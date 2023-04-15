@@ -1,0 +1,21 @@
+.map-overlay {
+    position: absolute;
+    top:0;
+    margin: 0 auto;
+    width: 20vw;
+}
+
+svg {
+    position:relative;
+}
+
+path {
+    position:absolute;
+    z-index:1;
+}
+
+path:hover {
+    z-index:2;
+    stroke: red;
+}
+

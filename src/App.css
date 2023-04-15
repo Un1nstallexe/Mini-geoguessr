@@ -36,3 +36,12 @@
     transform: rotate(360deg);
   }
 }
+
+path {
+    stroke: #fff;
+    stroke-width:0.5px;
+}
+
+body {
+    background-color: #1c1c1c;
+}

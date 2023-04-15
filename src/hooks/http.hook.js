@@ -14,7 +14,6 @@ const useHttp = () => {
       'Content-Type': 'application/json'
     } ) => {
         setFetchStatus("loading");
-        abortFetch(); // can't be more than one response to server
         abortFetchController.current = new AbortController();
         try {
             const response = await fetch(url, {
@@ -30,10 +29,17 @@ const useHttp = () => {
             const data = await response.json();
 
             setFetchStatus("loaded");
+            abortFetchController.current = null;
             return data;
         } catch (e) {
-            setFetchStatus("error");
-            throw e;
+            if (e.code !== 20) {
+
+                setFetchStatus("error");
+                console.dir(e);
+                throw e;
+
+            }   // abort exception is normal
+            
         } 
         
     }
@@ -43,7 +49,7 @@ const useHttp = () => {
             setFetchStatus("loaded");
     }
 
-    return {clearError, makeRequest, fetchStatus };
+    return { abortFetch, clearError, makeRequest, fetchStatus };
 }
 
 export default useHttp;
