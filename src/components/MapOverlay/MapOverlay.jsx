@@ -1,21 +1,11 @@
 import { useEffect, useState } from "react";
 import useRestCountriesApi from "../../apis/restCountries.api"
 import "./MapOverlay.css"
+import InspectOverlay from "../InspectOverlay/InspectOverlay";
 
-const MapOverlay = ({cca2}) => {
-    
-    const [country, setCountry] = useState(null);
-    const { getCountryByCca2, fetchStatus } = useRestCountriesApi();
+const MapOverlay = ({cca2, children}) => {
 
-
-    useEffect(() => {
-        if (cca2)
-            getCountryByCca2(cca2)
-                .then((r) => {
-                    setCountry(r);
-                    console.log(r);
-                })
-        console.dir(cca2);
+    useEffect(() => { 
     },[cca2]);    
 
     const disableSwipes = (e) => {
@@ -24,25 +14,8 @@ const MapOverlay = ({cca2}) => {
 
     return (
         <div className="map-overlay" onDrag={disableSwipes} onTouchMove={disableSwipes}>
-            {
-                fetchStatus === "error" ? (
-                    "Ошибка"
-                ) : fetchStatus === "loaded" && country ? (
-                    `Страна: ${country.translations.rus.common}`
-                ) : fetchStatus === "loading" ? (
-                    "загрузка..."
-                ) : country === null ? (
-                    "Выберите страну"
-                ) : "ERROR"
-            }
-            {
-                fetchStatus === "loaded" && country !== null ? (
-                    <img 
-                        src={country.flags.png} 
-                        alt="flag" 
-                        className="country-flag"/>
-                ) : null
-            } 
+             {/*children*/}
+             <InspectOverlay cca2={cca2}/>
         </div>
     );
 }

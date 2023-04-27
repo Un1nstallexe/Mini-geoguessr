@@ -30,8 +30,8 @@ const SvgMap = () => {
             scale: Math.min(
         h/getSvgHeight(), w/getSvgWidth()),
             translation: {
-                x:0,//-1010 * minScale + window.innerWidth,
-                y:0//666 * minScale  + window.innerHeight
+                x:0,
+                y:0
             }
         }
     );  
@@ -109,6 +109,9 @@ const SvgMap = () => {
             onMouseOver={onPathHover}
             onFocus={onPathHover} 
             ref={svgRef}
+            style={{
+                strokeWidth:1/(transformValue.scale ?? 1)
+            }}
             />
             </div>
             </ReactTouchEvents>

@@ -14,7 +14,7 @@ const useRestCountriesApi = () => {
         return (await makeRequest(prefix+ "alpha/" + cca2))[0]; // why [{}], not {} like e.g. in Marvel API?
     }
 
-    return {clearError, fetchStatus, getAllCountries, getCountryByCca2}; 
+    return {clearError, fetchStatus, getAllCountries, getCountryByCca2, abortFetch}; 
 }
 
 export default useRestCountriesApi;
