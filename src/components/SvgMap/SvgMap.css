@@ -1,15 +1,15 @@
-path {
+.world-svg path {
     transition: fill 0.2s;
     cursor:pointer;
     fill: #1c1c1c;
 }
 
-path:hover {
+.world-svg path:hover {
     fill: #21462f;
     stroke:#03fc62;
 }
 
-svg {
+.world-svg {
     position:relative;
     display: block; 
     overflow: visible;
@@ -34,12 +34,23 @@ body {
 }
 
 
-.country-cur {
+.world-svg .country-cur {
     fill: #464621;
     stroke:#cccc0c;
 }
 
-.country-cur:hover {
+.world-svg .country-cur:hover {
     fill: #464621;
     stroke:#b5d405;
 }
+
+.world-svg .country-chosen-before {
+   fill: #462121;
+    stroke:#fc0303; 
+}
+
+.world-svg .country-right-before {
+    fill: #21462f;
+    stroke:#03fc62; 
+}
+

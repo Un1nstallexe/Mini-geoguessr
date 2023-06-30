@@ -21,9 +21,13 @@ const SvgMap = () => {
     const minScale = useMemo(()=>Math.min(
         h/getSvgHeight(), w/getSvgWidth()),[w,h]);
 
-    const maxScale = useMemo(()=>16*minScale,[minScale]);
+    const maxScaleCoef = 32;
 
-    const [cca2,setCca2] = useState(null);  
+    const maxScale = useMemo(()=> maxScaleCoef * minScale,[minScale]);
+
+    const [cca2,setCca2] = useState(null);
+
+    const [countryObject, setCountryObject] = useState(null);
 
     const [transformValue, setTransformValue] = useState(
         {
@@ -61,6 +65,7 @@ const SvgMap = () => {
     const onChosenCountryChange = (e) => {
         if (!e.defaultPrevented) {
             setCca2(e.target.id);
+            setCountryObject(e.target);
             if (prevTarget.current) {
                 prevTarget.current.classList.remove("country-cur");
             }
@@ -105,6 +110,7 @@ const SvgMap = () => {
             onTap={onChosenCountryChange}>
                 <div>
                 <World
+            className="world-svg"
             onClick={onChosenCountryChange}
             onMouseOver={onPathHover}
             onFocus={onPathHover} 
@@ -118,7 +124,7 @@ const SvgMap = () => {
             
             
         </MapInteractionCSS>
-        <MapOverlay cca2={cca2}/>
+        <MapOverlay cca2={cca2} svgRef={svgRef}/>
         </>
         
     )

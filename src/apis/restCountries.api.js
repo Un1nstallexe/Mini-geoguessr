@@ -6,7 +6,7 @@ const useRestCountriesApi = () => {
     const {clearError, makeRequest, fetchStatus, abortFetch} = useHttp();
 
     const getAllCountries = () => {
-        return makeRequest(prefix + "all?fields=cca2,name");
+        return makeRequest(prefix + "all?fields=cca2,name,region,translations");
     }
 
     const getCountryByCca2 = async (cca2) => {
